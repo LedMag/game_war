@@ -1,11 +1,13 @@
 'use strict';
 
-export default class Layer{
+export class Layer{
 
   constructor(container){
 
     this.canvas = document.createElement("canvas");
     this.ctx = this.canvas.getContext("2d");
+    this.width;
+    this.height;
 
     container.prepend(this.canvas);
 
@@ -15,8 +17,7 @@ export default class Layer{
   }
 
   fitToContainer(cnv){
-    console.dir(cnv);
-    cnv.width = cnv.offsetWidth;
-    cnv.height = cnv.offsetHeight;
+    cnv.width = this.width = cnv.offsetWidth;
+    cnv.height = this.height = cnv.offsetHeight;
   }
 }
