@@ -5,11 +5,10 @@ import { MouseEvents, KeyEvents }  from './events.js';
 const TWO_PI = 2 * Math.PI;
 
 export class Dot{
-  constructor(radius, color, context){
+  constructor(radius, color, x, y){
     this.radius = radius;
     this.color = color;
-    this.pos = {x: 100, y: 100}
-    this.ctx = context;
+    this.pos = {x: x, y: y}
     this.vel = 500;
 
     this.keyEvents = new KeyEvents;
@@ -18,12 +17,12 @@ export class Dot{
     this.render = this.render.bind(this);
   }
 
-  render(){
-    this.ctx.fillStyle = this.color;
-    this.ctx.beginPath();
-    this.ctx.arc(this.pos.x, this.pos.y, this.radius, 0, TWO_PI);
-    this.ctx.closePath();
-    this.ctx.fill();
+  render(ctx){
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.pos.x, this.pos.y, this.radius, 0, TWO_PI);
+    ctx.closePath();
+    ctx.fill();
   }
 
   move(correction){
@@ -40,4 +39,5 @@ export class Dot{
       this.pos.y += this.vel*correction;
     }
   }
+
 }
