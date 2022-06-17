@@ -29,6 +29,24 @@ class Collision {
     info.collisionInfo.o2.pos.y += ny * s/2
   }
 
+  resolveCollisionWithBounce(info){
+    if(!info.collided) return;
+    let nx = info.collisionInfo.dx / info.collisionInfo.dy
+    let ny = info.collisionInfo.dy / info.collisionInfo.d
+    let s = info.collisionInfo.o1.radius + info.collisionInfo.o2.radius - info.collisionInfo.d
+
+    info.collisionInfo.o1.pos.x -= nx * s/2
+    info.collisionInfo.o1.pos.y -= ny * s/2
+    info.collisionInfo.o2.pos.x += nx * s/2
+    info.collisionInfo.o2.pos.y += ny * s/2
+
+    let k = -2*((info.collisionInfo.o2.vx - info.collisionInfo.o1.vx) * nx + (info.collisionInfo.o2.vy - info.collisionInfo.o1.vy) * ny) / (1/(s/2) + 1/(s/2))
+    info.collisionInfo.o1.vx -= k * nx / s/2
+    info.collisionInfo.o1.vy -= k * ny / s/2
+    info.collisionInfo.o2.vx += k * nx / s/2
+    info.collisionInfo.o2.vy += k * ny / s/2
+}
+
 }
 
 export { Collision };

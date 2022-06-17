@@ -9,7 +9,10 @@ export class Dot{
     this.radius = radius;
     this.color = color;
     this.pos = {x: x, y: y}
-    this.vel = 500;
+    this.v = 10;
+    this.vMax = 400;
+    this.ax = 1.1;
+    this.mass = this.radius * 10;
 
     this.keyEvents = new KeyEvents;
     this.mouseEvents = new MouseEvents;
@@ -26,17 +29,25 @@ export class Dot{
   }
 
   move(correction){
+    if(!this.keyEvents.keys['KeyA'] &
+       !this.keyEvents.keys['KeyS'] &
+       !this.keyEvents.keys['KeyD'] &
+       !this.keyEvents.keys['KeyW']){this.v = 10; return}
     if(this.keyEvents.keys['KeyA']){
-      this.pos.x -= this.vel*correction;
+      this.v = this.v < 400 ? this.v * this.ax : this.vMax;
+      this.pos.x -= this.v * correction;
     }
     if(this.keyEvents.keys['KeyD']){
-      this.pos.x += this.vel*correction;
+      this.v = this.v < 400 ? this.v * this.ax : this.vMax;
+      this.pos.x += this.v * correction;
     }
     if(this.keyEvents.keys['KeyW']){
-      this.pos.y -= this.vel*correction;
+      this.v = this.v < 400 ? this.v * this.ax : this.vMax;
+      this.pos.y -= this.v * correction;
     }
     if(this.keyEvents.keys['KeyS']){
-      this.pos.y += this.vel*correction;
+      this.v = this.v < 400 ? this.v * this.ax : this.vMax;
+      this.pos.y += this.v * correction;
     }
   }
 

@@ -7,7 +7,7 @@ import { Collision } from './fisics.js';
 
 
 const random = limit => {
-  return Math.floor(Math.random() * limit)
+  return Math.floor(Math.random() * limit);
 }
 
 
@@ -20,7 +20,7 @@ class App{
     this.dots = [];
 
     this.dots.push(this.dot);
-    this.getSetOfDots(1000);
+    this.getSetOfDots(3);
 
     new Loop(this.update.bind(this), this.display.bind(this));
   }
@@ -32,6 +32,7 @@ class App{
         if(k === i) continue;
         const info = this.collision.checkCollision(this.dots[i], this.dots[k]);
         this.collision.resolveCollision(info);
+        // this.collision.resolveCollisionWithBounce(info);
       }
     }
   }
@@ -47,10 +48,10 @@ class App{
   getSetOfDots(limit){
     for(let i = 0; i < limit; i++){
       const color = this.getColor();
-      const r = random(20);
-      const x = random(this.layer.width - 20);
-      const y = random(this.layer.height - 20);
-      const dot = new Dot(r, `rgb(${color.r}, ${color.g}, ${color.b})`, x, y);
+      // const r = random(20);
+      const x = random(this.layer.width - 60);
+      const y = random(this.layer.height - 60);
+      const dot = new Dot(60, `rgb(${color.r}, ${color.g}, ${color.b})`, x, y);
       this.dots.push(dot);
     }
   }
