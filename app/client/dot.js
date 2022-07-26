@@ -10,7 +10,7 @@ export class Dot{
     this.color = color;
     this.pos = {x: x, y: y}
     this.v = 10;
-    this.vMax = 400;
+    this.vMax = 300;
     this.ax = 1.1;
     this.mass = this.radius * 10;
 
