@@ -39,7 +39,12 @@ project
 ```
 
 ### Path to images
-In Markdown files, the path to the image should lead to the images folder, which should be located in the folder of the future page, as shown in the directory structure. For example !"[picture.png](./images/picture.png)".
+In Markdown files, the path to the image should lead to the images folder, which should be located in the folder of the future page, as shown in the directory structure. 
+
+For example: 
+``` Markdonw
+![picture.png](./images/picture.png)
+```
 
 ### Changing ports
 
@@ -52,8 +57,6 @@ START the main node.js [URL] "[NAME_OF_EXISTED_FOLDER]" "[NAME_OF_FUTURE_PAGE]"
 
 For example: 
 ``` Dockerfile
-RUN the main node.js
-
 RUN the main node.js https://petstore.swagger.io/v2/swagger.json "folder_of_doc_page" "new page"
 ```
 
